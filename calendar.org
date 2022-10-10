@@ -1,8 +1,3 @@
-#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
-#+options: author:t broken-links:nil c:nil creator:nil
-#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
-#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
-#+options: timestamp:t title:t toc:t todo:t |:t
 #+title: Emacs calendar/diary
 #+date: <2022-10-10 lun>
 #+author: Camilo Villavicencio
@@ -192,6 +187,59 @@ The 11 specifies November (the eleventh month), the 4 specifies Thursday (the fo
 This entry applies to the Saturday after the third Thursday of each month. The 2 specifies number of days after when the sexp '(diary-float t 3 4) would evaluate to t. This is useful when for example your organization has a committee meeting two days after every monthly meeting which takes place on the third Thursday, or if you would like to attend a virtual meeting scheduled in a different timezone causing a difference in the date.
 
 Each of the standard sexp diary entries takes an optional parameter specifying the name of a face or a single-character string to use when marking the entry in the calendar. Most generally, sexp diary entries can perform arbitrary computations to determine when they apply. See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Sexp-Diary-Entries.html][Sexp Entries and the Fancy Diary Display]].
+
+
+* Config
+Add in ~/.emacs or ~./.emacs.d/init.el
+
+Note 1: holidays are from Chile.
+Note 2: For more custom, https://www.emacswiki.org/emacs/CalendarLocalization
+
+#+BEGIN_SRC
+(add-hook 'calendar-load-hook
+          (lambda ()
+	    (calendar-set-date-style 'european)
+	    (setq calendar-week-start-day 1
+		  calendar-day-name-array ["domingo" "lunes" "martes" "miércoles"
+					   "jueves" "viernes" "sábado"]
+		  calendar-day-abbrev-array ["Do" "Lu" "Ma" "Mi" "Ju" "Vi" "Sa"]
+		  calendar-day-header-array ["Do" "Lu" "Ma" "Mi" "Ju" "Vi" "Sa"]
+		  calendar-month-name-array ["enero" "febrero" "marzo" "abril" "mayo"
+					     "junio" "julio" "agosto" "septiembre"
+					     "octubre" "noviembre" "diciembre"]
+		  calendar-holidays `(
+				      ;; Feriados chile 2022
+				      (holiday-fixed  1  1 "Año nuevo")
+				      (holiday-fixed  1  2 "Feriado adicional")
+
+				      ;; varía todos los años
+				      (holiday-fixed  4 15 "Viernes Santo") 
+				      (holiday-fixed  4 16 "Sábado Santo")  
+
+				      (holiday-fixed  4  1 "Día del trabajo")
+				      (holiday-fixed  4 21 "Día de las Glorias Navales")
+				      (holiday-fixed  5 21 "Día nacional de los Pueblos Indígenas")
+				      (holiday-fixed  5 27 "San Pedro y San Pablo")
+				      (holiday-fixed  6 16 "Día de la Virgen del Carmen")
+				      (holiday-fixed  9 16 "Feriado adicional") ;; variable
+				      (holiday-fixed  9 18 "Independencia Nacional")
+				      (holiday-fixed  9 19 "Día de las Glorias del Ejército")
+
+				      ;; varía todos los años
+				      (holiday-fixed 10 12 "Encuentro de Dos Mundos")
+
+				      ;; variable: cercano a 1 de noviembre, pero no dejando un día solo de sandwich.
+				      ;;           En 2023, por ejemplo  es el viernes 27 de oct (y miércoles 1 de nov).
+				      (holiday-fixed 10 31 "Día de las Iglesias Evangélicas y Protestantes") 
+
+				      (holiday-fixed 11  1 "Día de Todos los Santos")
+				      (holiday-fixed 12  8 "Inmaculada Concepción")
+				      (holiday-fixed 12 25 "Navidad")
+				      )
+		  )
+	    )
+	  )	  
+#+END_SRC
 
 * Nice other things
 - Receive reminders minutes until appointment  https://www.gnu.org/software/emacs/manual/html_node/emacs/Appointments.html
