@@ -1,6 +1,22 @@
-* Calendar
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: Emacs calendar/diary
+#+date: <2022-10-10 lun>
+#+author: Camilo Villavicencio
+#+language: en
+#+creator: Emacs 27.1 (Org mode 9.3)
 
-- d       :: View diary entries of selected day
+* Calendar
+- d       :: Display all diary entries for the selected date (diary-view-entries). 
+- s       :: Display the entire diary file (diary-show-all-entries). 
+- m       :: Mark all visible dates that have diary entries (diary-mark-entries). 
+- u       :: Unmark the calendar window (calendar-unmark). 
+- h       :: Display holidays for the selected date (calendar-cursor-holidays). 
+- x       :: Mark holidays in the calendar window (calendar-mark-holidays). 
+- u       :: Unmark calendar window (calendar-unmark). 
 - p d     :: Display day-in-year (calendar-print-day-of-year). 
 - C-c C-l :: Regenerate the calendar window (calendar-redraw). 
 - SPC     :: Scroll the next window up (scroll-other-window). 
@@ -43,6 +59,7 @@
 - C-x ]   :: Move point one year forward (calendar-forward-year). 
 - C-x [   :: Move point one year backward (calendar-backward-year). 
 
+
 ** Holidays
 - h       :: Display holidays for the selected date (calendar-cursor-holidays). 
 - x       :: Mark holidays in the calendar window (calendar-mark-holidays). 
@@ -50,6 +67,7 @@
 - a       :: List all holidays for the displayed three months in another window (calendar-list-holidays). 
 - M-x holidays :: List all holidays for three months around today’s date in another window. 
 - M-x list-holidays :: List holidays in another window for a specified range of years. 
+
 
 ** Generate
 
@@ -95,16 +113,17 @@
 ** Examples
 *** Time formats
 #+BEGIN_SRC
-12/22/2015  Twentieth wedding anniversary!
+A12/22/2015  Twentieth wedding anniversary!
 10/22       Ruth's birthday.
-* 21, *:    Payday
+\* 21, *:    Payday
 Tuesday--weekly meeting with grad students at 10am
          Supowit, Shen, Bitner, and Kapoor to attend.
 1/13/89     Friday the thirteenth!!
 thu 4pm     squash game with Lloyd.
 mar 16      Dad's birthday
 April 15, 2016 Income tax due.
-* 15        time cards due.
+A* 15        time cards due.
+
 #+END_SRC
 
 *** Appointments
