@@ -207,6 +207,9 @@ Note 2: For more custom, https://www.emacswiki.org/emacs/CalendarLocalization
 		  calendar-month-name-array ["enero" "febrero" "marzo" "abril" "mayo"
 					     "junio" "julio" "agosto" "septiembre"
 					     "octubre" "noviembre" "diciembre"]
+
+		  cal-html-directory "~/Público/cal/"
+
 		  calendar-holidays `(
 				      ;; Feriados chile 2022
 				      (holiday-fixed  1  1 "Año nuevo")
@@ -240,6 +243,7 @@ Note 2: For more custom, https://www.emacswiki.org/emacs/CalendarLocalization
 	    )
 	  )	  
 #+END_SRC
+
 
 * Nice other things
 - Receive reminders minutes until appointment  https://www.gnu.org/software/emacs/manual/html_node/emacs/Appointments.html
